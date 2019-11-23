@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
 {
-    public bool m_isHeldDown;
+    private bool m_isHeldDown;
     private float m_startPosX;
     private float m_startPosY;
     Vector3 m_mousePos;
