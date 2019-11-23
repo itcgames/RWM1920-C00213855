@@ -6,10 +6,11 @@ public class BombScript : MonoBehaviour
 {
     bool m_exploded = false;
     public float m_delay = 1.0f;
-    public float m_explosion_rate = 5.0f;
-    public float m_maxSize = 100.0f;
+    public float m_explosion_rate = 1.0f;
+    public float m_maxSize = 15.0f;
     public float m_explosionSpeed = 10.0f;
     public float m_currentRadius = 0.0f;
+    public bool m_activate = false;
 
     CircleCollider2D m_explosion_radius;
 
@@ -20,11 +21,15 @@ public class BombScript : MonoBehaviour
 
     private void Update()
     {
-        m_delay -= Time.deltaTime;
-        if(m_delay < 0)
+        if(m_activate==true)
         {
-            m_exploded = true;
+            m_delay -= Time.deltaTime;
+            if (m_delay < 0)
+            {
+                m_exploded = true;
+            }
         }
+
     }
 
     private void FixedUpdate()
@@ -54,7 +59,7 @@ public class BombScript : MonoBehaviour
             {
                 Vector2 targetPos = col.gameObject.transform.position;
                 Vector2 bombPos = gameObject.transform.position;
-                Vector2 blastDir = 100.0f * (targetPos - bombPos);
+                Vector2 blastDir = m_explosionSpeed * (targetPos - bombPos);
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(blastDir);
 
             }
