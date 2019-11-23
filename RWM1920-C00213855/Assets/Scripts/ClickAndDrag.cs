@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClickAndDrag : MonoBehaviour
 {
-    private bool  m_isHeldDown;
+    public bool m_isHeldDown;
     private float m_startPosX;
     private float m_startPosY;
     Vector3 m_mousePos;
@@ -42,5 +42,13 @@ public class ClickAndDrag : MonoBehaviour
     void OnMouseUp()
     {
         m_isHeldDown = false;
+    }
+    public bool getObjectHeldDown()
+    {
+        return m_isHeldDown;
+    }
+    public void SetHeldDown(bool t_heldDown)
+    {
+        m_isHeldDown = t_heldDown;
     }
 }

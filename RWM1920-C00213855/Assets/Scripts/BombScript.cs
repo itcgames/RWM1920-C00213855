@@ -66,4 +66,20 @@ public class BombScript : MonoBehaviour
 
         }
     }
+    public bool GetActivate()
+    {
+        return m_activate;
+    }
+    public void SetActive(bool t_activate)
+    {
+        m_activate = t_activate;
+    }
+    public bool GetExploded()
+    {
+        return m_exploded;
+    }
+    public void SetExploded(bool t_exploded)
+    {
+        m_activate = t_exploded;
+    }
 }

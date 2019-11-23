@@ -11,7 +11,7 @@ public class CollisionDetection : MonoBehaviour
         if (other.transform.gameObject.tag == "PressurePlate")
         {
             Debug.Log("Player collided with Pressure Plate");
-            Bomb.m_activate = true;
+            Bomb.SetActive(true);
         }
     }
 }

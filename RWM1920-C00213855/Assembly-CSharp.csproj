@@ -63,7 +63,7 @@
     <Compile Include="Assets\Scripts\BombScript.cs" />
     <Compile Include="Assets\Scripts\ClickAndDrag.cs" />
     <Compile Include="Assets\Scripts\CollisionDetection.cs" />
-    <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/wysoc/Desktop/RWM1920-C00213855/RWM1920-C00213855/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
