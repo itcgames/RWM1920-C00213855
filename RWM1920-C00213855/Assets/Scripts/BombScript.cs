@@ -11,12 +11,13 @@ public class BombScript : MonoBehaviour
     public float m_explosionSpeed = 10.0f;
     public float m_currentRadius = 0.0f;
     public bool m_activate = false;
-
+    public AudioSource m_explosionSound;
     CircleCollider2D m_explosion_radius;
 
     private void Start()
     {
         m_explosion_radius = gameObject.GetComponent<CircleCollider2D>();
+        m_explosionSound = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -61,7 +62,7 @@ public class BombScript : MonoBehaviour
                 Vector2 bombPos = gameObject.transform.position;
                 Vector2 blastDir = m_explosionSpeed * (targetPos - bombPos);
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(blastDir);
-
+                m_explosionSound.Play();
             }
 
         }
