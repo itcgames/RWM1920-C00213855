@@ -182,7 +182,7 @@ MonoBehaviour:
   m_explosionSpeed: 200
   m_currentRadius: 0
   m_activate: 0
-  m_explosionSound: {fileID: 0}
+  m_particle: {fileID: 0}
 --- !u!58 &2375370283844041948
 CircleCollider2D:
   m_ObjectHideFlags: 0

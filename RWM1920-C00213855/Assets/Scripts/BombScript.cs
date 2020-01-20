@@ -11,13 +11,14 @@ public class BombScript : MonoBehaviour
     public float m_explosionSpeed = 10.0f;
     public float m_currentRadius = 0.0f;
     public bool m_activate = false;
-    public AudioSource m_explosionSound;
+    AudioSource m_explosionSound;
+    public ParticleSystem m_particle;
     CircleCollider2D m_explosion_radius;
 
     private void Start()
     {
-        m_explosion_radius = gameObject.GetComponent<CircleCollider2D>();
-        m_explosionSound = gameObject.GetComponent<AudioSource>();
+        m_explosion_radius = GetComponent<CircleCollider2D>();
+        m_explosionSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -25,9 +26,10 @@ public class BombScript : MonoBehaviour
         if(m_activate==true)
         {
             m_delay -= Time.deltaTime;
-            if (m_delay < 0)
+            if (m_delay <= 0)
             {
                 m_exploded = true;
+
             }
         }
 
@@ -40,9 +42,11 @@ public class BombScript : MonoBehaviour
             if(m_currentRadius < m_maxSize)
             {
                 m_currentRadius += m_explosion_rate;
+
             }
             else
             {
+
                 Object.Destroy(this.gameObject.transform.parent.gameObject);
             }
 
@@ -62,6 +66,8 @@ public class BombScript : MonoBehaviour
                 Vector2 bombPos = gameObject.transform.position;
                 Vector2 blastDir = m_explosionSpeed * (targetPos - bombPos);
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(blastDir);
+                Debug.Log("Hey2");
+                m_particle.Play();
                 m_explosionSound.Play();
             }
 
