@@ -13,6 +13,7 @@ public class CollisionDetection : MonoBehaviour
             Debug.Log("Player collided with Pressure Plate");
             Bomb.SetActive(true);
             pp.GetComponent<AudioSource>().Play();
+            Bomb.GetComponentInParent<Animator>().SetBool("Test", true);
         }
     }
 }

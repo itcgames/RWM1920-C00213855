@@ -14,18 +14,21 @@ public class BombScript : MonoBehaviour
     AudioSource m_explosionSound;
     public ParticleSystem m_particle;
     CircleCollider2D m_explosion_radius;
-
+    private Animator m_anim;
     private void Start()
     {
         m_explosion_radius = GetComponent<CircleCollider2D>();
         m_explosionSound = GetComponent<AudioSource>();
+        m_anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if(m_activate==true)
         {
+            
             m_delay -= Time.deltaTime;
+            //m_anim.SetBool("Test", true);
             if (m_delay <= 0)
             {
                 m_exploded = true;
@@ -88,5 +91,9 @@ public class BombScript : MonoBehaviour
     public void SetExploded(bool t_exploded)
     {
         m_activate = t_exploded;
+    }
+    public void playAnimation()
+    {
+        m_anim.SetBool("Test", true);
     }
 }
