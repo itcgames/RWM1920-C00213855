@@ -1,14 +1,12 @@
 {
-    "name": "PatrykTests",
+    "name": "TestsPlayMode",
     "references": [
         "PatrykScripts"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
