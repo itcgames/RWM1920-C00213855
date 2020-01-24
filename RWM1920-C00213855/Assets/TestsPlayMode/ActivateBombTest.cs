@@ -8,24 +8,17 @@ namespace Tests
 {
     public class ActivateBombTest
     {
-        private GameObject m_pressurePlate;
-        private GameObject m_player;
         private GameObject m_bomb;
-
         [SetUp]
         public void Setup()
         {
             m_bomb = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Bomb"));
-            m_player = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
-            m_pressurePlate = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/PressurePlate"));
         }
 
         [TearDown]
         public void Teardown()
         {
             Object.Destroy(m_bomb);
-            Object.Destroy(m_player);
-            Object.Destroy(m_pressurePlate);
         }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -33,18 +26,63 @@ namespace Tests
         [UnityTest]
         public IEnumerator ActivateBomb()
         {
-            PlayerMovement m_PlayerMovement = m_player.GetComponent<PlayerMovement>();
-            CollisionDetection m_pressurePlateCollision = m_pressurePlate.GetComponent<CollisionDetection>();
-            BombScript m_bombToActivate = m_bomb.GetComponent<BombScript>();
-            m_PlayerMovement.Movement();
-            if(m_PlayerMovement.transform.position.x == m_pressurePlate.transform.position.x)
-            {
-                m_bombToActivate.SetActive(true);
-            }
-
+            BombScript bombscript = m_bomb.GetComponentInChildren<BombScript>();
+            bombscript.SetActive(true);
             yield return new WaitForSeconds(0.1f);
-            bool result = m_bombToActivate.GetActivate();
-            Assert.IsTrue(result);
+            Assert.True(bombscript.GetActivate());
         }
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator ExplodeBomb()
+        {
+            BombScript bombscript = m_bomb.GetComponentInChildren<BombScript>();
+            bombscript.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            if(bombscript.GetActivate())
+            {
+                bombscript.SetExploded(true);
+            }
+            Assert.True(bombscript.GetExploded());
+        }
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator SoundPlay()
+        {
+            BombScript bombscript = m_bomb.GetComponentInChildren<BombScript>();
+            AudioSource bombSound = m_bomb.GetComponentInChildren<AudioSource>();
+            bombscript.SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            if (bombscript.GetActivate())
+            {
+                bombscript.SetExploded(true);
+            }
+            if(bombscript.GetExploded())
+            {
+                bombSound.Play();
+            }
+            Assert.True(bombSound.isPlaying);
+        }
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator ParticlePlay()
+        {
+            BombScript bombscript = m_bomb.GetComponentInChildren<BombScript>();
+            ParticleSystem particle = m_bomb.GetComponentInChildren<ParticleSystem>();
+            bombscript.SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            if (bombscript.GetActivate())
+            {
+                bombscript.SetExploded(true);
+            }
+            if (bombscript.GetExploded())
+            {
+                particle.Play();
+            }
+            Assert.True(particle.isPlaying);
+        }
+
     }
 }

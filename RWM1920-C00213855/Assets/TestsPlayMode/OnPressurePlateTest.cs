@@ -30,18 +30,18 @@ namespace Tests
         [UnityTest]
         public IEnumerator PressurePlateSteppedOn()
         {
-            
-            PlayerMovement m_PlayerMovement = m_player.GetComponent<PlayerMovement>();
-            CollisionDetection m_pressurePlateCollision = m_pressurePlate.GetComponent<CollisionDetection>();
-
-            m_PlayerMovement.Movement();
-
-            yield return new WaitForSeconds(0.2f);
-            if (m_PlayerMovement.transform.position.x == m_pressurePlate.transform.position.x)
+            bool result = false;
+            PlayerMovement m_PlayerMovement = m_player.GetComponentInChildren<PlayerMovement>();
+            m_PlayerMovement.move();
+            yield return new WaitForSeconds(2.0f);
+            if(m_player.GetComponent<Transform>().position.x >= m_pressurePlate.GetComponent<Transform>().position.x)
             {
-                
+                result = true;
             }
-            bool result = true;
+            else
+            {
+                result = false;
+            }
             Assert.IsTrue(result);
         }
     }

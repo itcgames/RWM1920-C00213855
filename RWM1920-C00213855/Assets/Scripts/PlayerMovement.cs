@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        move();
         Movement();
     }
     public void Movement()
@@ -22,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * moveSpeed);
         //Moves Left and right along x Axis //Left/Right
         transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
+    }
+    public void move()
+    {
+        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
     }
 
 }

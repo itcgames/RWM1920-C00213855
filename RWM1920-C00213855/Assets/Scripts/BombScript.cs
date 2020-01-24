@@ -90,7 +90,7 @@ public class BombScript : MonoBehaviour
     }
     public void SetExploded(bool t_exploded)
     {
-        m_activate = t_exploded;
+        m_exploded = t_exploded;
     }
     public void playAnimation()
     {
