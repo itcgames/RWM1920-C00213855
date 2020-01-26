@@ -49,8 +49,7 @@ public class BombScript : MonoBehaviour
             }
             else
             {
-
-                Object.Destroy(this.gameObject.transform.parent.gameObject);
+                Destroy(this.gameObject.transform.parent.gameObject);
             }
 
             m_explosion_radius.radius = m_currentRadius;

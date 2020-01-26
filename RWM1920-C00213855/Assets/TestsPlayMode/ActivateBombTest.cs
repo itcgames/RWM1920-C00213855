@@ -83,6 +83,5 @@ namespace Tests
             }
             Assert.True(particle.isPlaying);
         }
-
     }
 }
